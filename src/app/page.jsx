@@ -1,11 +1,14 @@
 import ObliqueBackground from '../components/ObliqueBackground';
-import Hero from '../components/Hero';
+
+import VinylPlayer from '../components/VinylPlayer';
+
 
 export default function Home() {
   return (
     <main>
+      <VinylPlayer/>
       <ObliqueBackground />
-      <Hero />
+    
     </main>
   );
 }
