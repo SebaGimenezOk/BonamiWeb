@@ -1,9 +1,22 @@
 @import "tailwindcss";
 
-/* Variables personalizadas opcionales */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Colores Bonami */
+  --bon-celeste: #81CAD6;  
+  --bon-amarillo: #FCBF49;  
+  --bon-rojo: #D62828;
+  --bon-rojosuave: #c62a2a;   
+  --bon-naranja:#F77F00;
+  --bon-azul:#003049;
+  --bon-azuloscuro:#091f2b;
+  --bon-verde: #38c87e;  
+  --bon-verdesuave: #59df9a; 
+  --bon-beige:#c7be9b;  
+  --bon-beigebajo:#fae7bf; 
+
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,0 +1,18 @@
+import React from 'react'
+import Image from 'next/image'
+
+
+export default function Tickets() {
+    return (
+        <div name='Tickets' className='flex h-screen w-400 justify-center text-amber-50'>Tickets
+            <Image
+                src="/blanco250.png"
+                alt="Púa"
+                width={250}
+                height={250}
+                className="object-contain"
+                priority
+            />
+        </div>
+    )
+}
