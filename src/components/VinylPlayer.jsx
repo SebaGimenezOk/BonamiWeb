@@ -25,17 +25,19 @@ export default function VinylPlayer({ isPlaying }) {
   return (
     <div
       name="Inicio"
-      className="flex flex-col items-center justify-center py-12 text-white"
-    >
+      className="flex flex-col items-center justify-center py-12 text-white">
       {/* LOGO */}
       <Image
         src="/logoblancodisco.png"
         alt="Bonami"
         width={200}
         height={70}
-        className="mb-10"
+        className="mb-10 mt-10"
         priority
       />
+
+
+
 
       {/* PLAYER */}
       <div className="relative w-64 h-64 md:w-80 md:h-80 mb-6">

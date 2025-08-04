@@ -15,6 +15,8 @@ import Footer from '../components/Footer';
 
 
 
+
+
 export default function Home() {
 
   const [isPlaying, setIsPlaying] = useState(false);
@@ -24,12 +26,14 @@ export default function Home() {
     <>
       <NavBar />
       <main className="pb-[100px]">
-        <VinylPlayer isPlaying={isPlaying} />
+
+        <VinylPlayer   isPlaying={isPlaying} />
+
         <Nosotros />
-        <VerticalBackground />
-        <Contacto />
         <Tickets />
         <Eventos />
+        <Contacto />
+        <VerticalBackground />
       </main>
       <Footer
         isPlaying={isPlaying}

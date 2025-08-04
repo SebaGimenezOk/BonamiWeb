@@ -16,37 +16,58 @@ import {
   FaKickstarterK,
 } from "react-icons/fa6";
 
+
+
+
+
 export default function Footer({ isPlaying, setIsPlaying, volume, setVolume }) {
-    const [elapsed, setElapsed] = useState(0);
-    const timerRef = useRef(null);
+  const [elapsed, setElapsed] = useState(0);
+  const howlerRef = useRef(null);
+  const timerRef = useRef(null);
+
   
-    useEffect(() => {
-      if (isPlaying) {
-        timerRef.current = setInterval(() => setElapsed((prev) => prev + 1), 1000);
-      } else {
-        clearInterval(timerRef.current);
-      }
-      return () => clearInterval(timerRef.current);
-    }, [isPlaying]);
-  
-    const togglePlay = () => setIsPlaying(!isPlaying);
-    const stopPlay = () => {
-      setIsPlaying(false);
-      setElapsed(0);
-    };
-    const formatTime = (s) =>
-      `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
-  
-    return (
-      <footer className="fixed bottom-0 h-[90px] w-full bg-[var(--bon-azuloscuro)] text-white flex justify-between items-center px-6 z-50">
-        {/* Controles e info a la izquierda */}
-        <div className="flex items-center gap-4">
+
+
+
+
+  useEffect(() => {
+    if (isPlaying) {
+      timerRef.current = setInterval(() => {
+        setElapsed((prev) => prev + 1);
+      }, 1000);
+    } else {
+      clearInterval(timerRef.current);
+    }
+    return () => clearInterval(timerRef.current);
+  }, [isPlaying]);
+
+  const togglePlay = () => setIsPlaying((prev) => !prev);
+
+  const stopPlay = () => {
+    setIsPlaying(false);
+    setElapsed(0);
+    if (howlerRef.current) {
+      howlerRef.current.stop();
+    }
+  };
+
+  const formatTime = (s) =>
+    `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
+
+  return (
+    <>
+     
+      {/* Footer principal */}
+      <footer className="fixed bottom-0 h-[70px] w-full bg-slate-900/90 text-white flex justify-between items-center px-6 z-40">
+        {/* Controles de reproducción */}
+        <div className="flex ml-12 items-center gap-4">
           <button
             className="hover:text-cyan-400 transition text-2xl"
             aria-label="Retroceder"
           >
             <FaBackward />
           </button>
+
           <button
             onClick={togglePlay}
             className="hover:text-cyan-400 transition text-2xl"
@@ -54,6 +75,7 @@ export default function Footer({ isPlaying, setIsPlaying, volume, setVolume }) {
           >
             {isPlaying ? <FaPause /> : <FaPlay />}
           </button>
+
           <button
             onClick={stopPlay}
             className="hover:text-red-400 transition text-2xl"
@@ -61,15 +83,20 @@ export default function Footer({ isPlaying, setIsPlaying, volume, setVolume }) {
           >
             <FaStop />
           </button>
+
           <button
             className="hover:text-cyan-400 transition text-2xl"
             aria-label="Adelantar"
           >
             <FaForward />
           </button>
-  
-          <span className="text-sm select-none">ON AIR: {formatTime(elapsed)}</span>
-  
+
+          {/* Tiempo transcurrido */}
+          <span className="text-sm select-none">
+            ON AIR: {formatTime(elapsed)}
+          </span>
+
+          {/* Control de volumen */}
           <input
             type="range"
             min={0}
@@ -80,19 +107,20 @@ export default function Footer({ isPlaying, setIsPlaying, volume, setVolume }) {
             className="w-24 accent-cyan-500"
             aria-label="Control de volumen"
           />
-          <span className="text-xs select-none">
-            {(volume * 100).toFixed(0)}%
-          </span>
-  
+          <span className="text-xs select-none">{(volume * 100).toFixed(0)}%</span>
+
+          {/* Stream de audio */}
           <Howler
+         id="bonami-audio"
+           ref={howlerRef}
             src="https://radiostreamingserver.com.ar/proxy/bonami/stream?type=.mp3"
             playing={isPlaying}
             volume={volume}
             html5={true}
           />
         </div>
-  
-        {/* Redes sociales a la derecha */}
+
+        {/* Íconos sociales */}
         <div className="flex gap-3 text-xl">
           <a
             href="#"
@@ -138,5 +166,6 @@ export default function Footer({ isPlaying, setIsPlaying, volume, setVolume }) {
           </a>
         </div>
       </footer>
-    );
-  }
+    </>
+  );
+}

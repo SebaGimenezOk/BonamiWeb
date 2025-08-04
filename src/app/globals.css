@@ -16,6 +16,14 @@
   --bon-verdesuave: #59df9a; 
   --bon-beige:#c7be9b;  
   --bon-beigebajo:#fae7bf; 
+  --bon-negro:#000000; 
+  --bon-negrosuave:#0d0909; 
+  --bon-color:#2A120F;
+  --bon-color:#CE3234; 
+  --bon-color:#F39436; 
+  --bon-color:#F8CD61; 
+  --bon-color:#44A595; 
+  --bon-color:#FEF6E4;  
 
 }
 
@@ -31,3 +39,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* video rosa */
+/* https://v1.pinimg.com/videos/iht/hls/16/94/bd/1694bda26af4cd302db3678aa2628da5.m3u8 */
+
+
+/* video abeja */
+/* https://v1.pinimg.com/videos/iht/hls/f8/e9/68/f8e968b1713ecc07328d88ec9d49dd09.m3u8 */
