@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect } from "react";
 import Image from "next/image";
@@ -9,15 +9,13 @@ export default function VinylPlayer({ isPlaying }) {
 
   useEffect(() => {
     if (isPlaying) {
+      // Inicia animación continua solo si no estaba corriendo
       controls.start({
         rotate: 360,
-        transition: {
-          repeat: Infinity,
-          ease: "linear",
-          duration: 5,
-        },
+        transition: { repeat: Infinity, ease: "linear", duration: 5 },
       });
     } else {
+      // Pausa suavemente, mantiene posición actual
       controls.stop();
     }
   }, [isPlaying, controls]);
@@ -25,7 +23,8 @@ export default function VinylPlayer({ isPlaying }) {
   return (
     <div
       name="Inicio"
-      className="flex flex-col items-center justify-center py-12 text-white">
+      className="flex flex-col items-center justify-center py-12 text-white relative"
+    >
       {/* LOGO */}
       <Image
         src="/logoblancodisco.png"
@@ -36,42 +35,41 @@ export default function VinylPlayer({ isPlaying }) {
         priority
       />
 
-
-
-
       {/* PLAYER */}
-      <div className="relative w-64 h-64 md:w-80 md:h-80 mb-6">
+      <div className="relative flex items-center gap-8">
         {/* VINILO */}
-        <motion.div
-          animate={controls}
-          initial={{ rotate: 0 }}
-          className="absolute inset-0"
-        >
-          <Image
-            src="/vinilo.png"
-            alt="Vinilo"
-            fill
-            className="object-contain"
-            priority
-          />
-        </motion.div>
+        <div className="relative w-64 h-64 md:w-80 md:h-80">
+          <motion.div
+            animate={controls}
+            initial={{ rotate: 0 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src="/vinilo.png"
+              alt="Vinilo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </motion.div>
 
-        {/* PÚA */}
-        <motion.div
-          animate={{ rotate: isPlaying ? 0 : -45 }}
-          transition={{ type: "spring", stiffness: 100, damping: 12 }}
-          className="absolute w-40 top-20 left-40 md:top-20 md:left-56"
-          style={{ transformOrigin: "top left" }}
-        >
-          <Image
-            src="/pua.png"
-            alt="Púa"
-            width={140}
-            height={30}
-            className="object-contain"
-            priority
-          />
-        </motion.div>
+          {/* PÚA */}
+          <motion.div
+            animate={{ rotate: isPlaying ? 0 : -45 }}
+            transition={{ type: "spring", stiffness: 100, damping: 12 }}
+            className="absolute w-40 top-20 left-40 md:top-20 md:left-56"
+            style={{ transformOrigin: "top left" }}
+          >
+            <Image
+              src="/pua.png"
+              alt="Púa"
+              width={140}
+              height={30}
+              className="object-contain"
+              priority
+            />
+          </motion.div>
+        </div>
       </div>
     </div>
   );
