@@ -34,12 +34,15 @@ export default function Footer({ isPlaying, setIsPlaying, volume, setVolume }) {
         <button onClick={stopPlay} className="hover:text-red-400 transition text-2xl"><FaStop /></button>
         <button className="hover:text-cyan-400 transition text-2xl"><FaForward /></button>
 
-        <span className="text-sm select-none">CONECTED: {formatTime(elapsed)}</span>
+       <div>
+       <span className="text-base  mr-2 text-emerald-500 select-none">ON AIR:</span>
+       <span className="text-base  text-white">{formatTime(elapsed)}</span>
+       </div>
 
         {/* Mostrar canción actual */}
         <CurrentSong />
 
-        <span className="flex items-center gap-2 text-xs">
+        <span className="flex items-center gap-2">
           <span className="text-2xl">🔊</span>
           <input
             type="range"
@@ -50,8 +53,8 @@ export default function Footer({ isPlaying, setIsPlaying, volume, setVolume }) {
             onChange={e => setVolume(parseFloat(e.target.value))}
             className="w-24 accent-cyan-500"
           />
-          <span>{(volume * 100).toFixed(0)}%</span>
         </span>
+        <span className='text-base'>{(volume * 100).toFixed(0)}%</span>
 
 
         <Howler

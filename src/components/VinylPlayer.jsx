@@ -38,7 +38,7 @@ export default function VinylPlayer({ isPlaying }) {
       {/* PLAYER */}
       <div className="relative flex items-center gap-8">
         {/* VINILO */}
-        <div className="relative w-64 h-64 md:w-80 md:h-80">
+        <div className="relative w-64 h-64 md:w-100 md:h-100">
           <motion.div
             animate={controls}
             initial={{ rotate: 0 }}
@@ -57,7 +57,7 @@ export default function VinylPlayer({ isPlaying }) {
           <motion.div
             animate={{ rotate: isPlaying ? 0 : -45 }}
             transition={{ type: "spring", stiffness: 100, damping: 12 }}
-            className="absolute w-40 top-20 left-40 md:top-20 md:left-56"
+            className="absolute w-60 top-40 left-60 md:top-20 md:left-76"
             style={{ transformOrigin: "top left" }}
           >
             <Image

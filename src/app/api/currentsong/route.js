@@ -1,21 +1,17 @@
 export async function GET(req) {
-    try {
-      // URL real del streaming de Bonami
-      const response = await fetch("https://radiostreamingserver.com.ar/proxy/bonami/stream?type=.mp3");
-      
-      // Dependiendo del servidor, si devuelve JSON con songtitle
-      const data = await response.json();
-  
-      const rawTitle = data.songtitle || "";
-      const [artist, title] = rawTitle.split(" - ");
-  
-      return new Response(JSON.stringify({
-        artist: artist?.trim() || "Desconocido",
-        title: title?.trim() || "Desconocida",
-      }), { status: 200 });
-    } catch (error) {
-      console.error("Error fetching current song:", error);
-      return new Response(JSON.stringify({ artist: "", title: "" }), { status: 500 });
-    }
+  try {
+    const response = await fetch("http://69.64.46.123:8151/status-json.xsl");
+    const data = await response.json();
+
+    const rawTitle = data.icestats.source[0].title || "";
+    // Separamos en artista y tema, manejando posibles guiones extra
+    const parts = rawTitle.split(" - ");
+    const artist = parts.slice(0, -1).join(" - ").trim() || "Desconocido";
+    const title = parts.slice(-1)[0].trim() || "Desconocida";
+
+    return new Response(JSON.stringify({ artist, title }), { status: 200 });
+  } catch (error) {
+    console.error("Error fetching current song:", error);
+    return new Response(JSON.stringify({ artist: "", title: "" }), { status: 500 });
   }
-  
+}
